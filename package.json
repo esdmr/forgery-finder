@@ -1,0 +1,8 @@
+{
+	"private": true,
+	"packageManager": "pnpm@9.1.2",
+	"devDependencies": {
+		"webpack": "npm:ignoredep@^200.9999.0",
+		"xo": "^0.58.0"
+	}
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Verification Result - Forgery Finder</title>
+        <link rel="stylesheet" href="/index.css">
+        <link rel="icon" href="/favicon.svg">
+    </head>
+    <body>
+        <header class="header">
+            <img class="header__logo" src="/favicon.svg" alt="">
+            <h1 class="header__title">Forgery Finder</h1>
+        </header>
+        <main class="content">
+            <div class="verify_result">
+                <nav class="verify_result__nav">
+                    <a href="/" class="verify_result__back back">Back</a>
+                </nav>
+                <h2 class="verify_result__title">Verification Result</h2>
+                <p>Uploaded image matches the original by {{score}}%.</p>
+
+                <div class="verify_result__images">
+                    <figure class="verify_result__figure">
+                        <img src="{{uploaded}}" class="verify_result__image"
+                            alt="">
+                        <figcaption class="verify_result__image_caption">The
+                            uploaded image</figcaption>
+                    </figure>
+                    <figure class="verify_result__figure">
+                        <img src="{{original}}" class="verify_result__image"
+                            alt="">
+                        <figcaption class="verify_result__image_caption">The
+                            original image</figcaption>
+                    </figure>
+                    <figure class="verify_result__figure">
+                        <img src="{{diff}}" class="verify_result__image"
+                            alt="">
+                        <figcaption class="verify_result__image_caption">The difference between the two images</figcaption>
+                    </figure>
+                    <figure class="verify_result__figure">
+                        <img src="{{threshold}}" class="verify_result__image"
+                            alt="">
+                        <figcaption class="verify_result__image_caption">The
+                            threshold of the difference</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

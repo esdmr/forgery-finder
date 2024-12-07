@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{error}} - Forgery Finder</title>
+        <link rel="stylesheet" href="/index.css">
+        <link rel="icon" href="/favicon.svg">
+        <script type="module" src="/index.js"></script>
+    </head>
+    <body>
+        <header class="header">
+            <img class="header__logo" src="/favicon.svg" alt="">
+            <h1 class="header__title">Forgery Finder</h1>
+        </header>
+        <main class="content">
+            <div id="error" class="content__part error">
+                <nav class="error__nav">
+                    <a href="/" class="error__back back">Back</a>
+                </nav>
+                <h2 class="error__title">{{error}}</h2>
+                <p class="error__desc">{{description}}</p>
+            </div>
+        </main>
+    </body>
+</html>

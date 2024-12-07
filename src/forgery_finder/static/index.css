@@ -1,0 +1,227 @@
+:root {
+    --color-primary: #69f;
+    --color-primary-light: #64b5f6;
+    --color-primary-dark: #0288d1;
+    --color-primary-alt: var(--color-primary-light);
+    --color-secondary: #fc0;
+    --color-background: #cfd8dc;
+    --color-foreground: #0f0f0f;
+    --color-primary-text: #000;
+    --color-progress-empty: #0007;
+    --color-progress-full: var(--color-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-primary-alt: var(--color-primary-dark);
+        --color-background: #263238;
+        --color-foreground: #f0f0f0;
+    }
+}
+
+:root,
+body {
+    margin: 0;
+    color-scheme: light dark;
+    background-color: var(--color-background);
+    scrollbar-color: var(--color-progress-full) var(--color-progress-empty);
+    padding: 0;
+    font-family: Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 16px;
+    color: var(--color-foreground);
+}
+
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    padding-block: 0.5em;
+    background-color: var(--color-primary-alt);
+    margin-block-end: 2ex;
+}
+
+.header__logo {
+    inline-size: 2em;
+    block-size: 2em;
+}
+
+.header__title {
+    display: inline;
+    margin: 0;
+}
+
+.header,
+.content {
+    padding-inline: calc(50vi + max(-49vi, -30ch));
+}
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress__image {
+    inline-size: 50%;
+}
+
+.progress__bar {
+    display: inline-block;
+    inline-size: 20ch;
+    block-size: 0.75ex;
+    border-radius: 0.75ex;
+    background-color: var(--color-progress-empty);
+    margin: 1em;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress__complete {
+    display: inline-block;
+    block-size: 100%;
+    background-color: var(--color-progress-full);
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+}
+
+.progress:not([hidden]) .progress__complete {
+    animation: 3405ms ease-out 1 both fake-progress;
+}
+
+@keyframes fake-progress {
+    0% {
+        inline-size: 0%;
+    }
+
+    10% {
+        inline-size: 1%;
+    }
+
+    25% {
+        inline-size: 30%;
+    }
+
+    50% {
+        inline-size: 60%;
+    }
+
+    75% {
+        inline-size: 75%;
+    }
+
+    85% {
+        inline-size: 75%;
+    }
+
+    90% {
+        inline-size: 85%;
+    }
+
+    95% {
+        inline-size: 90%;
+    }
+
+    100% {
+        inline-size: 99%;
+    }
+}
+
+.verify_result {
+    container: verify_result / inline-size;
+}
+
+.verify_result__images {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5em;
+}
+
+@container verify_result (inline-size > 500px) {
+    .verify_result__images {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 500px) and (min-height: 500px) {
+    .verify_result__images {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.verify_result__image {
+    max-inline-size: 100%;
+}
+
+:where(.upload__line).upload_result {
+    margin-block: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+}
+
+.upload_result__image {
+    inline-size: 2em;
+    block-size: 2em;
+}
+
+.upload_result__text {
+    font-weight: bold;
+}
+
+button,
+input::file-selector-button,
+:any-link {
+    margin-block: .1em;
+    border: none;
+    border-radius: .5em;
+    background-color: var(--color-primary);
+    padding-inline: 1em;
+    padding-block: .5em;
+    color: var(--color-primary-text);
+    text-decoration: none;
+}
+
+button:hover,
+input:hover::file-selector-button,
+:any-link:hover {
+    background-color: var(--color-primary-light);
+}
+
+button:active,
+input:active::file-selector-button,
+:any-link:active {
+    background-color: var(--color-primary-dark);
+}
+
+input:not([type=file]) {
+    margin-block: .1em;
+    border: 2px solid var(--color-primary);
+    border-radius: .5em;
+    background-color: transparent;
+    padding-inline: 1em;
+    padding-block: .5em;
+    color: var(--color-foreground);
+}
+
+:focus-visible,
+input:focus-visible::file-selector-button {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: -4px;
+}
+
+input:focus-visible {
+    outline: none;
+}
+
+input:not([type=file]):focus-visible {
+    outline: none;
+    border-color: var(--color-secondary);
+}
+
+[hidden] {
+    display: none;
+}

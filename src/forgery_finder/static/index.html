@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Forgery Finder</title>
+        <link rel="stylesheet" href="/index.css">
+        <link rel="icon" href="/favicon.svg">
+        <script type="module" src="/index.js"></script>
+        <meta name="description" content="Card Tampering Detection">
+        <meta name="keywords"
+            content="card tamper detection flask skimage PIL imutils python docker compose pdm homework project example">
+        <link rel="author" href="https://github.com/esdmr">
+    </head>
+    <body>
+        <header class="header">
+            <img class="header__logo" src="/favicon.svg" alt="">
+            <h1 class="header__title">Forgery Finder</h1>
+        </header>
+        <main class="content">
+            <form id="verify" class="content__part verify" action="/api/verify"
+                method="post" enctype="multipart/form-data">
+                <h2 class="verify__title">Verify</h2>
+                <div class="verify__line verify__user">
+                    <label class="verify__user_label">
+                        Username:
+                        <input type="text" class="verify__user_input"
+                            name="username" autocomplete="username"
+                            autocapitalize="off" required pattern="^\w+$">
+                    </label>
+                </div>
+                <div class="verify__line verify__card">
+                    <label class="verify__card_label">
+                        Card Image:
+                        <input class="verify__card_input" type="file"
+                            name="file_upload" required accept="image/*">
+                    </label>
+                </div>
+                <div class="verify__line verify__submit">
+                    <button class="verify__submit_button">Submit</button>
+                </div>
+            </form>
+            <form id="upload" class="content__part upload" action="/api/upload"
+                method="post" enctype="multipart/form-data">
+                <h2 class="upload__title">Upload</h2>
+                <div class="upload__line upload__user">
+                    <label class="upload__user_label">
+                        Username:
+                        <input type="text" class="upload__user_input"
+                            name="username" autocomplete="off"
+                            autocapitalize="off" required pattern="^\w+$">
+                    </label>
+                </div>
+                <div class="upload__line upload__card">
+                    <label class="upload__card_label">
+                        Card Image:
+                        <input class="upload__card_input" type="file"
+                            name="file_upload" required accept="image/*">
+                    </label>
+                </div>
+                <div class="upload__line upload__pass">
+                    <label class="upload__pass_label">
+                        Upload password:
+                        <input class="upload__pass_input" type="password"
+                            name="password"
+                            autocomplete="section-upload current-password"
+                            autocapitalize="off" required accept="image/*">
+                    </label>
+                </div>
+                <div class="upload__line upload__submit">
+                    <button class="upload__submit_button">Submit</button>
+                </div>
+                <div id="upload_result" class="upload__line upload_result"
+                    hidden>
+                    <img class="upload_result__image" src="/check.svg">
+                    <div class="upload_result__text">Uploaded</div>
+                </div>
+            </form>
+            <div id="verify_progress" class="content__part progress" hidden>
+                <img class="progress__image" src="/processing.svg" alt="">
+                <div class="progress__text">Processing…</div>
+                <div class="progress__bar" role="presentation">
+                    <div id="verify_progress_bar" class="progress__complete">
+                    </div>
+                </div>
+            </div>
+            <div id="upload_progress" class="content__part progress" hidden>
+                <img class="progress__image" src="/uploading.svg" alt="">
+                <div class="progress__text">Uploading…</div>
+                <div class="progress__bar" role="presentation">
+                    <div id="upload_progress_bar" class="progress__complete">
+                    </div>
+                </div>
+            </div>
+            <div id="verify_result" class="content__part verify_result" hidden>
+                <nav class="verify_result__nav">
+                    <button id="verify_back"
+                        class="verify_result__back back">Back</button>
+                </nav>
+                <h2 class="verify_result__title">Verification Result</h2>
+                <p class="verify_result__desc">Uploaded image matches the
+                    original by <span id="score"></span>%.</p>
+
+                <div class="verify_result__images">
+                    <figure class="verify_result__figure">
+                        <img id="uploaded" class="verify_result__image"
+                            alt="">
+                        <figcaption class="verify_result__image_caption">The
+                            uploaded image</figcaption>
+                    </figure>
+                    <figure class="verify_result__figure">
+                        <img id="original" class="verify_result__image"
+                            alt="">
+                        <figcaption class="verify_result__image_caption">The
+                            original image</figcaption>
+                    </figure>
+                    <figure class="verify_result__figure">
+                        <img id="diff" class="verify_result__image"
+                            alt="">
+                        <figcaption class="verify_result__image_caption">The
+                            difference between the two images</figcaption>
+                    </figure>
+                    <figure class="verify_result__figure">
+                        <img id="threshold" class="verify_result__image"
+                            alt="">
+                        <figcaption class="verify_result__image_caption">The
+                            threshold of the difference</figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div id="error" class="content__part error" hidden>
+                <nav class="error__nav">
+                    <button id="error_back"
+                        class="error__back back">Back</button>
+                </nav>
+                <h2 id="error_title" class="error__title"></h2>
+                <p id="error_desc" class="error__desc"></p>
+            </div>
+        </main>
+    </body>
+</html>

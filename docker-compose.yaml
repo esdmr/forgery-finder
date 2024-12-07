@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx
+    restart: unless-stopped
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./src/forgery_finder/static:/var/www/front-end
+    ports:
+      - "9876:80"
+
+  back-end:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: forgery-finder
+    restart: unless-stopped
+    volumes:
+      - ./src:/forgery-finder/src
+      - ./secrets:/forgery-finder/secrets
+    expose:
+      - "5000"

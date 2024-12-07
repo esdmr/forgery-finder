@@ -1,0 +1,20 @@
+[project]
+name = "forgery-finder"
+version = "0.0.0"
+description = "Card Tampering Detection"
+authors = [{ name = "Saeed M Rad", email = "esdmr0@gmail.com" }]
+dependencies = [
+    "scikit-image>=0.22.0",
+    "imutils>=0.5.4",
+    "pillow>=10.2.0",
+    "flask>=3.0.2",
+    "opencv-python-headless>=4.9.0.80",
+    "gunicorn>=21.2.0",
+]
+requires-python = "==3.12.*"
+readme = "README.md"
+license = { text = "MIT" }
+
+
+[tool.pdm]
+distribution = false
